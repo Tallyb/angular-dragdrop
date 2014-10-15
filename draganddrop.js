@@ -154,7 +154,7 @@ angular.module("ngDragDrop",[])
 
                 function onDragLeave(e) {
                   dragging--;
-                  if (dragging == 0) {
+                  if (dragging === 0) {
                     element.removeClass(dragHoverClass);
                   }
                 }
@@ -307,7 +307,7 @@ angular.module("ngDragDrop",[])
                     width = canvas.measureText(text + ELLIPSIS).width;
                 }
                 return text + ELLIPSIS;
-            };
+            }
 
             this.generate = function (text, options) {
                 var config = angular.extend({}, defaultConfig, options || {});
