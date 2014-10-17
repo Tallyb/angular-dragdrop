@@ -68,15 +68,16 @@ angular.module("ang-drag-drop",[])
                     }, 0);
                     var sendChannel = attrs.dragChannel || "defaultchannel";
                     $rootScope.$broadcast("ANGULAR_DRAG_END", sendChannel);
+                    var fn; 
                     if (e.dataTransfer && e.dataTransfer.dropEffect !== "none") {
                         if (attrs.onDropSuccess) {
-                            var fn = $parse(attrs.onDropSuccess);
+                            fn = $parse(attrs.onDropSuccess);
                             scope.$apply(function () {
                                 fn(scope, {$event: e});
                             });
                         } else {
                             if (attrs.onDropFailure) {
-                                var fn = $parse(attrs.onDropFailure);
+                                fn = $parse(attrs.onDropFailure);
                                 scope.$apply(function () {
                                     fn(scope, {$event: e});
                                 });
@@ -154,7 +155,7 @@ angular.module("ang-drag-drop",[])
 
                 function onDragLeave(e) {
                   dragging--;
-                  if (dragging == 0) {
+                  if (dragging === 0) {
                     element.removeClass(dragHoverClass);
                   }
                 }
@@ -307,7 +308,7 @@ angular.module("ang-drag-drop",[])
                     width = canvas.measureText(text + ELLIPSIS).width;
                 }
                 return text + ELLIPSIS;
-            };
+            }
 
             this.generate = function (text, options) {
                 var config = angular.extend({}, defaultConfig, options || {});
@@ -334,7 +335,7 @@ angular.module("ang-drag-drop",[])
                     xOffset: config.xOffset,
                     yOffset: config.yOffset
                 };
-            }
+            };
         }
     ]);
 
